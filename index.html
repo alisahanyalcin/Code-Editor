@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="codemirror/theme/dracula.css" id="theme-css">
+    <link rel="icon" type="image/png" href="fav.png" />
+</head>
+<body>
+<h3>Code Editor</h3>
+<p>
+    Create and share beautiful images of your source code.<br>
+    Start typing or drop a file into the text area to get started.
+</p>
+
+<div class="editor">
+    <div class="editor-toolbar">
+        <button id="open-file-btn">Open File</button>
+        <button id="line-numbers-btn">Line Numbers</button>
+        <input type="text" id="set-title" placeholder="Set Name">
+        <label class="select">
+            <span><b class="material-icons">color_lens</b></span>
+            <select id="theme-switch-btn">
+                <option value="dracula" selected>Dracula</option>
+                <option value="3024-day">3024-day</option>
+                <option value="3024-night">3024-night</option>
+                <option value="abcdef">abcdef</option>
+                <option value="ambiance">ambiance</option>
+                <option value="ayu-dark">ayu-dark</option>
+                <option value="ayu-mirage">ayu-mirage</option>
+                <option value="base16-dark">base16-dark</option>
+                <option value="base16-light">base16-light</option>
+                <option value="bespin">bespin</option>
+                <option value="blackboard">blackboard</option>
+                <option value="cobalt">cobalt</option>
+                <option value="colorforth">colorforth</option>
+                <option value="duotone-dark">duotone-dark</option>
+                <option value="duotone-light">duotone-light</option>
+                <option value="eclipse">eclipse</option>
+                <option value="elegant">elegant</option>
+                <option value="erlang-dark">erlang-dark</option>
+                <option value="gruvbox-dark">gruvbox-dark</option>
+                <option value="hopscotch">hopscotch</option>
+                <option value="idea">idea</option>
+                <option value="isotope">isotope</option>
+                <option value="lesser-dark">lesser-dark</option>
+                <option value="liquibyte">liquibyte</option>
+                <option value="lucario">lucario</option>
+                <option value="material">material</option>
+                <option value="material-darker">material-darker</option>
+                <option value="material-palenight">material-palenight</option>
+                <option value="material-ocean">material-ocean</option>
+                <option value="mbo">mbo</option>
+                <option value="mdn-like">mdn-like</option>
+                <option value="midnight">midnight</option>
+                <option value="monokai">monokai</option>
+                <option value="moxer">moxer</option>
+                <option value="neat">neat</option>
+                <option value="neo">neo</option>
+                <option value="night">night</option>
+                <option value="nord">nord</option>
+                <option value="oceanic-next">oceanic-next</option>
+                <option value="panda-syntax">panda-syntax</option>
+                <option value="paraiso-dark">paraiso-dark</option>
+                <option value="paraiso-light">paraiso-light</option>
+                <option value="pastel-on-dark">pastel-on-dark</option>
+                <option value="railscasts">railscasts</option>
+                <option value="rubyblue">rubyblue</option>
+                <option value="seti">seti</option>
+                <option value="shadowfox">shadowfox</option>
+                <option value="solarized dark">solarized dark</option>
+                <option value="solarized light">solarized light</option>
+                <option value="the-matrix">the-matrix</option>
+                <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
+                <option value="ttcn">ttcn</option>
+                <option value="twilight">twilight</option>
+                <option value="vibrant-ink">vibrant-ink</option>
+                <option value="xq-dark">xq-dark</option>
+                <option value="xq-light">xq-light</option>
+                <option value="yeti">yeti</option>
+                <option value="yonce">yonce</option>
+                <option value="zenburn">zenburn</option>
+            </select>
+        </label>
+        <label class="select">
+            <span><b class="material-icons">language</b></span>
+            <select id="language-switch-btn">
+                <option value="php" selected>PHP</option>
+                <option value="javascript">Java Script</option>
+                <option value="sass">SASS</option>
+                <option value="htmlmixed">HTML</option>
+                <option value="xml">XML</option>
+                <option value="asciiarmor">Ascii Armor</option>
+                <option value="css">CSS</option>
+                <option value="clike">C</option>
+                <option value="clike">C++</option>
+                <option value="clike">Objective-C</option>
+                <option value="clike">Java</option>
+                <option value="clike">Scala</option>
+                <option value="clike">Kotlin</option>
+                <option value="clike">Ceylon</option>
+                <option value="sql">SQL</option>
+                <option value="pascal">Pascal</option>
+            </select>
+        </label>
+        <label class="select">
+            <span><b class="material-icons">text_fields</b></span>
+            <select id="font-switch-btn">
+                <option value="monospace">Monospace</option>
+                <option value="monaco">monaco</option>
+                <option value="Ubuntu Mono">Ubuntu Mono</option>
+                <option value="Fira Code" selected>Fira Code</option>
+            </select>
+        </label>
+        <label class="select">
+            <span><b class="material-icons">text_rotate_up</b></span>
+            <select id="font-size-switch-btn">
+                <option value="10px">10px</option>
+                <option value="12px">12px</option>
+                <option value="14px">14px</option>
+                <option value="16px" selected>16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="22px">22px</option>
+                <option value="24px">24px</option>
+                <option value="30px">30px</option>
+            </select>
+        </label>
+        <input type="color" id="set-color-btn" value="#a3afb9">
+
+        <label class="select export-select" style="opacity: 1;border-color: #00a8c6;">
+            <span class="export">
+                <b class="material-icons">insert_photo</b>
+            </span>
+            <span class="export-options">
+                <span onclick="exportImage(1)">1X</span>
+                <span onclick="exportImage(2)">2X</span>
+                <span onclick="exportImage(4)">4X</span>
+            </span>
+        </label>
+    </div>
+    <div class="result"></div>
+    <div class="preview-wrapper">
+        <div class="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+        <div class="preview" id="preview">
+            <div class="preview-top cm-s-dracula">
+                <span></span>
+                <div class="title" id="title"></div>
+                <div></div>
+            </div>
+            <textarea name="" id="textarea" cols="30" rows="10"><?php
+
+htmlspecialchars($string, double_encode: false);
+
+class PostsController
+{
+    #[Route("/api/posts/{id}", methods: ["GET"])]
+    public function get($id) { /* ... */ }
+}
+
+class Point {
+  public function __construct(
+    public float $x = 0.0,
+    public float $y = 0.0,
+    public float $z = 0.0,
+  ) {}
+}</textarea>
+        </div>
+    </div>
+</div>
+
+<script src="codemirror/lib/codemirror.js"></script>
+<script src="codemirror/addon/edit/matchbrackets.js"></script>
+<script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="codemirror/mode/xml/xml.js"></script>
+<script src="codemirror/mode/javascript/javascript.js"></script>
+<script src="codemirror/mode/css/css.js"></script>
+<script src="codemirror/mode/sass/sass.js"></script>
+<script src="codemirror/mode/clike/clike.js"></script>
+<script src="codemirror/mode/sql/sql.js"></script>
+<script src="codemirror/mode/asciiarmor/asciiarmor.js"></script>
+<script src="codemirror/mode/php/php.js"></script>
+<script src="codemirror/mode/pascal/pascal.js"></script>
+<script src="codemirror/html2canvas.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
